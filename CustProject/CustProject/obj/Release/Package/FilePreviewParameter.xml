@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="custTest" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\615786\\Documents\\Visual\ Studio\ 2015\\Projects\\CustProject\\CustProject\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\615786\\Documents\\Visual\ Studio\ 2015\\Projects\\CustProject\\CustProject\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="custTest/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\615786\\Documents\\Visual\ Studio\ 2015\\Projects\\CustProject\\CustProject\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="CustomerDbContext-Web.config Connection String" description="" value="Server=tcp:custtest.database.windows.net,1433;Initial Catalog=mycustTestDB;Persist Security Info=False;User ID=zhuhaishui;Password=Oosd2017;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\615786\\Documents\\Visual\ Studio\ 2015\\Projects\\CustProject\\CustProject\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CustomerDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\615786\\Documents\\Visual\ Studio\ 2015\\Projects\\CustProject\\CustProject\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

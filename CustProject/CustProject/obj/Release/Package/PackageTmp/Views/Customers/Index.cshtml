@@ -1,0 +1,109 @@
+﻿@model IEnumerable<CustProject.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add New Customer", "Create")|
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@using (Html.BeginForm("Index", "Customers", FormMethod.Post, new { id = "searchForm" }))
+{
+    @Html.AntiForgeryToken()
+    <p>
+
+        CustomerName: @Html.TextBox("Name")
+        <input type="hidden" id="PageIndex" name="PageIndex" value="0" />
+        <input type="button" id="searchButton" value="Search" />
+    </p>
+}
+
+@section scripts {
+    <script>
+        function submitForm(pagenumber) {
+            pagenumber = parseInt(pagenumber, 10);
+            $('#PageIndex').val(pagenumber - 1);
+            $('#searchForm').submit();
+        }
+
+        $(function () {
+
+            $('#searchButton').click(function () {
+                
+                if ($('#pagebar .currentpagenumber').text() == "")
+                {
+                    submitForm("1");
+                }
+                else
+                {
+                    submitForm($('#pagebar .currentpagenumber').text());
+                }
+
+            });
+
+            $('#pagebar .pagenumber').click(function () {
+                submitForm($(this).text());
+            });
+
+        });
+    </script>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+        </td>
+    </tr>
+}
+
+</table>
+
+ <div id="pagebar">
+    @for (var i = 0; i < ViewBag.PageCount; i++)
+    {
+        if (i == ViewBag.PageIndex)
+        {
+            <span class="currentpagenumber">@(i + 1)</span>
+        }
+        else
+        {
+            <a class="pagenumber" href="javascript:;">@(i + 1)</a>
+        }
+    }
+</div>
+
